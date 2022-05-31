@@ -1,6 +1,7 @@
 #pragma once
 #include "constants.h"
 #include <SDL2/SDL.h>
+#include <vector>
 #include "text.h"
 
 void drawMenuStart(SDL_Renderer* renderer,int menuChoice)
@@ -33,7 +34,8 @@ void drawMenuPause(SDL_Renderer* renderer,int menuChoice)
     name.render(renderer);
 }
 
-void drawMenu(SDL_Renderer* renderer, SDL_Rect choiceBoxes[], string choiceContent[], int choiceNum, int choice)
+
+void drawMenu(SDL_Renderer* renderer, vector<SDL_Rect> choiceBoxes, vector<string> choiceContent, int choiceNum, int choice)
 {
     for(int i=0;i<choiceNum;i++)
     {

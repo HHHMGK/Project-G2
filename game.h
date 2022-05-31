@@ -197,7 +197,6 @@ void GAME::run()
 {
     render();
     //in menu
-    startGame();
     while(!quit)
     {
         while(!quit && isStartMenu)

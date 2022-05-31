@@ -5,8 +5,9 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
+ 
 
-# Make data base, printed on Tue May 31 14:57:39 2022
+# Make data base, printed on Tue May 31 16:43:00 2022
 
 # Variables
 
@@ -227,9 +228,9 @@ PROCESSOR_IDENTIFIER = AMD64 Family 23 Model 96 Stepping 1, AuthenticAMD
 
 # Directories
 
-# . (key d:/code linh tinh/Learn SDL/Project G2, mtime 1653983574): 26 files, no impossibilities.
+# . (key d:/code linh tinh/Learn SDL/Project G2, mtime 1653987087): 27 files, no impossibilities.
 
-# 26 files, no impossibilities in 1 directories.
+# 27 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -240,7 +241,7 @@ PROCESSOR_IDENTIFIER = AMD64 Family 23 Model 96 Stepping 1, AuthenticAMD
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-03-18 09:11:02
+#  Last modified 2022-05-31 16:42:58
 #  File has been updated.
 #  Successfully updated.
 
@@ -292,12 +293,13 @@ all:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 29 / storage = 267 B / avg = 9 B
-# current buf: size = 8174 B / used = 267 B / count = 29 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 30 / storage 
+ = 277 B / avg = 9 B
+# current buf: size = 8174 B / used = 277 B / count = 30 / avg = 9 B
 
-# strcache performance: lookups = 36 / hit rate = 19%
+# strcache performance: lookups = 37 / hit rate = 18%
 # hash-table stats:
-# Load=29/8192=0%, Rehash=0, Collisions=0/36=0%
-# Finished Make data base on Tue May 31 14:57:39 2022
+# Load=30/8192=0%, Rehash=0, Collisions=0/37=0%
+# Finished Make data base on Tue May 31 16:43:00 2022
 
  
