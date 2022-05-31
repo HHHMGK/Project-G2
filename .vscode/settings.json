@@ -62,5 +62,12 @@
         "cinttypes": "cpp",
         "cstdbool": "cpp",
         "typeinfo": "cpp"
-    }
+    },
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "d:\\code linh tinh\\Learn SDL\\Project G2",
+            "binaryPath": "d:\\code linh tinh\\Learn SDL\\Project G2\\main.exe",
+            "binaryArgs": []
+        }
+    ]
 }

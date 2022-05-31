@@ -1,5 +1,5 @@
 make.exe --dry-run --keep-going --print-directory
 make: Entering directory 'd:/code linh tinh/Learn SDL/Project G2'
-g++ -Isrc/Include -Lsrc/lib -o main main.cpp -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf
+g++ main.cpp -Isrc/include -Lsrc/lib -Lsrc/bin -static -static-libgcc -static-libstdc++ -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lmingw32 -lSDL2main -lSDL2 -mwindows  -Wl,--dynamicbase -Wl,--nxcompat -Wl,--high-entropy-va -lm -ldinput8 -ldxguid -ldxerr8 -luser32 -lgdi32 -lwinmm -limm32 -lole32 -loleaut32 -lshell32 -lsetupapi -lversion -luuid -lRpcrt4   -o main
 make: Leaving directory 'd:/code linh tinh/Learn SDL/Project G2'
  

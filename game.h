@@ -59,7 +59,8 @@ GAME::GAME()
     }
     loadAllTexture(renderer);
     loadMap();
-
+    initMenuChoice();
+    
     quit = false;
     isStartMenu = true;
     inGame = false;

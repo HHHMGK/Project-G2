@@ -34,7 +34,31 @@ void drawMenuPause(SDL_Renderer* renderer,int menuChoice)
     name.render(renderer);
 }
 
+vector<SDL_Rect> cBox[3];
+vector<string> cContent[3];
+void initMenuChoice()
+{
+    //start menu
+    cBox[0].push_back({550,335,180,50});
+    cBox[0].push_back({550,335+50+85,180,50});
+    cContent[0].push_back("Start");
+    cContent[0].push_back("Quit");
+    //pause menu
+    cBox[1].push_back({550,240,180,50});
+    cBox[1].push_back({550,240+50+85,180,50});
+    cBox[1].push_back({550,240+2*50+2*85,180,50});
+    cBox[1].push_back({550,240+3*50+3*85,180,50});
+    cContent[1].push_back("Resume");
+    cContent[1].push_back("Music");
+    cContent[1].push_back("Sound");
+    cContent[1].push_back("Quit");
+    //over menu
+    cBox[2].push_back({550,335,180,50});
+    cBox[2].push_back({550,335+50+85,180,50});
+    cContent[2].push_back("Again");
+    cContent[2].push_back("Quit");
 
+}
 void drawMenu(SDL_Renderer* renderer, vector<SDL_Rect> choiceBoxes, vector<string> choiceContent, int choiceNum, int choice)
 {
     for(int i=0;i<choiceNum;i++)
