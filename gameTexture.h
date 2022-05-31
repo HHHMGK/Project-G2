@@ -8,12 +8,12 @@ LTexture pHealth;
 void loadAllTexture(SDL_Renderer* renderer)
 {
     //player, boss
-    pTexture.loadFromFile(renderer,"assets/player.png");
-    bossTexture.loadFromFile(renderer,"assets/CosmicNose.png");
+    //pTexture.loadFromFile(renderer,"./assets/player.png");
+    bossTexture.loadFromFile(renderer,"./assets/CosmicNose.png");
     //terrain
-    tile.loadFromFile(renderer,"assets/tile.png");
+    tile.loadFromFile(renderer,"./assets/tile.png");
     //hud
-    pHealth.loadFromFile(renderer,"assets/playerHealth.png");
+    pHealth.loadFromFile(renderer,"./assets/playerHealth.png");
 
 }
 
