@@ -19,7 +19,7 @@ struct player
     bool invi =0 ;
 
     player(int x, int y, int hp);
-    void init(int x, int y, int hp);
+    void spawn(int x, int y, int hp);
     //~player();
     void handleEvent(SDL_Event &e);
     void move();
@@ -36,7 +36,7 @@ player::player(int x = 0, int y = 0, int hp=5)
     velX=velY=0;
     shoot=0;
 }
-void player::init(int x = 0, int y = 0, int hp=5)
+void player::spawn(int x = playerSpawnX, int y = playerSpawnY, int hp=5)
 {
     this->x=x;
     this->y=y;

@@ -18,7 +18,7 @@ struct boss
 
     void syncData();
     boss(int x,int y,int hp);
-    void init(int x,int y,int hp);
+    void spawn(int x,int y,int hp);
     void move();
     void shoot();
     void render(SDL_Renderer* renderer);
@@ -29,7 +29,7 @@ boss::boss(int x = 640,int y = 200,int hp = bossMaxHP)
     this->y=y;
     this->hp=hp;
 }
-void boss::init(int x,int y,int hp)
+void boss::spawn(int x = bossSpawnX, int y = bossSpawnY, int hp = bossMaxHP)
 {
     this->x=x;
     this->y=y;

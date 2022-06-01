@@ -18,7 +18,8 @@ const int playerSpawnY = SCREEN_HEIGHT/2;
 
 //boss
 const int bossMaxHP = 1000;
-
+const int bossSpawnX = SCREEN_WIDTH/2;
+const int bossSpawnY = 40;
 //bullet
 const int bSize=3;
 const int maxBulletNumber = 300;
