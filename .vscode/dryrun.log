@@ -1,5 +1,5 @@
 make.exe --dry-run --always-make --keep-going --print-directory
 make: Entering directory 'd:/code linh tinh/Learn SDL/Project G2'
-g++ main.cpp -Isrc/include -Lsrc/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -o main
+g++ main.cpp -Isrc/include -Lsrc/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -o main
 make: Leaving directory 'd:/code linh tinh/Learn SDL/Project G2'
  

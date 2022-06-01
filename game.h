@@ -12,6 +12,7 @@
 #include "menu.h"
 #include "hud.h"
 #include "text.h"
+#include "sound.h"
 using namespace std;
 
 
@@ -20,6 +21,7 @@ class GAME
 public:
     GAME();
     ~GAME();
+    void initGameEntity();
     void introMenu();
     void startGame();
     void pauseGame();
@@ -62,20 +64,21 @@ GAME::GAME()
         return ;
     }
     loadAllTexture(renderer);
+    loadSounds();
     loadMap();
     initMenuChoice();
-
     quit = false;
-    isStartMenu = false;
-    inGame = false;
-    paused = false;
-    isGameOver = false;
-    menuChoice = 1;
-    choice = 0;
 }
 GAME::~GAME()
 {
     quitSDL(window, renderer);
+}
+void GAME::initGameEntity()
+{
+    P.spawn();
+    B.spawn();
+    for(int i=0;i<maxBulletNumber;i++) 
+        bulletList[i].active = 0;
 }
 void GAME::introMenu()
 {
@@ -83,6 +86,7 @@ void GAME::introMenu()
     inGame = false;
     isGameOver = false;
     paused = false;
+    quit = false;
     menuChoice = 1;
     choice = 0;
 }
@@ -92,10 +96,10 @@ void GAME::startGame()
     inGame = true;
     isGameOver = false;
     paused = false;
-    P.spawn(playerSpawnX,playerSpawnY);
-    B.spawn(bossSpawnX,bossSpawnY);
+    quit = false;
     menuChoice = 1;
     choice = 0;
+    initGameEntity();
 }
 void GAME::pauseGame()
 {
@@ -113,6 +117,7 @@ void GAME::endGame()
     inGame = false;
     isGameOver = true;
     paused = false;
+    quit = false;
     menuChoice = 1;
     choice = 0;
 }
@@ -179,16 +184,20 @@ void GAME::update()
 }
 void GAME::run()
 {
-    startGame();
+    introMenu();
     render();
     while(!quit)
     {
+        restartBGMusic();
         //debug();
         while(!quit && isStartMenu)
         {
             while(SDL_PollEvent(&e))
+            {
                 handleEvent(e);
-            fixMenuChoice(1,2);
+                fixMenuChoice(1,2);
+            }
+            if(choice != 0) playSFX(menuSFX);
             if(choice==1) startGame();
             if(choice==2) quit = true;
             render();
@@ -197,14 +206,18 @@ void GAME::run()
         while(!quit && inGame)
         {
             while(SDL_PollEvent(&e))
+            {
                 handleEvent(e);
+                fixMenuChoice(1,4);
+            }
             if(paused)
             {
-                fixMenuChoice(1,4);
+                if(choice != 0) playSFX(menuSFX);
                 if(choice==1) resumeGame();
-                if(choice==2) ;
+                if(choice==2) toogleBGMusic();
                 if(choice==3) ;
                 if(choice==4) quit = 1;
+                choice = 0;
             }
             else
                 update();
@@ -217,9 +230,12 @@ void GAME::run()
         while(!quit && isGameOver)
         {
             while(SDL_PollEvent(&e))
+            {
                 handleEvent(e);
-            fixMenuChoice(1,3);
-            if(choice==1) startGame();  //play a gain
+                fixMenuChoice(1,3);
+            }
+            if(choice != 0) playSFX(menuSFX);
+            if(choice==1) startGame();  //play again
             if(choice==2) introMenu(); //go back to menu  
             if(choice==3) quit = true;  //quit
             render();
@@ -232,12 +248,12 @@ void GAME::render()
 {
     int startTime = SDL_GetTicks(); 
 
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_RenderClear(renderer);
     if(isStartMenu)
         drawMenuStart(renderer,menuChoice);
     if(inGame)
     {
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-        SDL_RenderClear(renderer);
         renderTerrain(renderer);
         renderBullets(renderer);
         P.render(renderer);

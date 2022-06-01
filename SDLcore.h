@@ -3,6 +3,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_mixer.h>
 #include "constants.h"
 
 
@@ -42,6 +43,11 @@ bool initSDL(SDL_Window* &window, SDL_Renderer* &renderer, std::string WINDOW_TI
         std::cout<<"TTF Init Error: "<<TTF_GetError()<<std::endl;
         return 0;
     }
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) != 0)
+    {
+        std::cout<<"Mixer Init Error: "<<Mix_GetError()<<std::endl;
+        return 0;
+    }
     return 1;
 }
 void quitSDL(SDL_Window* window, SDL_Renderer* renderer)
@@ -50,6 +56,7 @@ void quitSDL(SDL_Window* window, SDL_Renderer* renderer)
     SDL_DestroyWindow(window);
     IMG_Quit();
     TTF_Quit();
+    Mix_CloseAudio();
     SDL_Quit();
 }
 void waitUntilKeyPressed()
