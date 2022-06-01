@@ -94,7 +94,10 @@ void LTexture::render(SDL_Renderer* renderer, SDL_Rect *source, int x = 0, int y
     if(w==-1)
         dest.w=mWidth,
         dest.h=mHeight;
-    SDL_RenderCopyEx(renderer,mTexture,source,&dest,0,NULL,dir?SDL_FLIP_NONE:SDL_FLIP_HORIZONTAL);
+    int errorCode = SDL_RenderCopyEx(renderer,mTexture,source,&dest,0,NULL,dir?SDL_FLIP_NONE:SDL_FLIP_HORIZONTAL);
+    if(errorCode!=0)
+        std::cout<<"Render copy error: "<<SDL_GetError()<<'\n';
+        
 }
 
 int LTexture::getWidth()
