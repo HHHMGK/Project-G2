@@ -10,6 +10,7 @@ string defaultFont = "assets/OpenSans-ExtraBold.TTF";
 struct textTexture
 {
     textTexture(int x,int y,int size,string str,string fontPath,SDL_Color color);
+    ~textTexture();
     void render(SDL_Renderer *renderer);
     void initWH();
     int x,y;
@@ -33,6 +34,13 @@ textTexture::textTexture(int x,int y,int size,string str,string fontPath = defau
     this->font=TTF_OpenFont(fontPath.c_str(),size);
     this->texture=NULL;
     initWH();
+}
+textTexture::~textTexture()
+{
+    if(texture!=NULL)
+        SDL_DestroyTexture(texture);
+    if(font!=NULL)
+        TTF_CloseFont(font);
 }
 void textTexture::initWH()
 {

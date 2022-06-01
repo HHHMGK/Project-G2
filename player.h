@@ -48,18 +48,22 @@ void player::handleEvent(SDL_Event &e)
     {
         switch(e.key.keysym.sym)
         {
+            case SDLK_RIGHT:
             case SDLK_d:
                 velX+=pVel;
                 dir=0;
                 break;
+            case SDLK_LEFT:
             case SDLK_a: 
                 velX-=pVel;
                 dir=1;
                 break;
+            case SDLK_UP:
             case SDLK_w: 
                 velY-=pVel;
                 dir=2;
                 break;
+            case SDLK_DOWN:
             case SDLK_s: 
                 velY+=pVel;
                 dir=3;

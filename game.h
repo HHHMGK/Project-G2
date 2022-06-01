@@ -82,6 +82,7 @@ void GAME::introMenu()
     isStartMenu = true;
     inGame = false;
     isGameOver = false;
+    paused = false;
     menuChoice = 1;
     choice = 0;
 }
@@ -90,7 +91,9 @@ void GAME::startGame()
     isStartMenu = false;
     inGame = true;
     isGameOver = false;
-    P.init(playerSpawnX,playerSpawnY);
+    paused = false;
+    P.spawn(playerSpawnX,playerSpawnY);
+    B.spawn(bossSpawnX,bossSpawnY);
     menuChoice = 1;
     choice = 0;
 }
@@ -109,6 +112,7 @@ void GAME::endGame()
     isStartMenu = false;
     inGame = false;
     isGameOver = true;
+    paused = false;
     menuChoice = 1;
     choice = 0;
 }
@@ -125,14 +129,13 @@ void GAME::handleEventMenu(SDL_Event &e)
     {
         switch(e.key.keysym.sym)
         {
+            case SDLK_w:
             case SDLK_UP:
                 menuChoice--;
                 break;
+            case SDLK_s:
             case SDLK_DOWN:
                 menuChoice++;
-                break;
-            case SDLK_ESCAPE:
-                menuChoice = 7;
                 break;
             case SDLK_RETURN:
                 choice = menuChoice;
@@ -142,18 +145,8 @@ void GAME::handleEventMenu(SDL_Event &e)
 }
 void GAME::handleEventInGame(SDL_Event &e)
 {
-    if (e.type == SDL_KEYDOWN)
-    {
-        if (e.key.keysym.sym == SDLK_ESCAPE && inGame)
-        {
-            if (paused) resumeGame();
-            else pauseGame();
-        }
-    }
-    if(!paused) P.handleEvent(e);
-    else handleEventMenu(e);
+    P.handleEvent(e);
 }
-
 
 void GAME::handleEvent(SDL_Event &e)
 {
@@ -166,13 +159,18 @@ void GAME::handleEvent(SDL_Event &e)
         handleEventMenu(e);
     if(inGame)
     {
+        if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE && e.key.repeat ==0)
+        {
+            if (paused) resumeGame();
+            else pauseGame();
+            return ;
+        }
         if(paused) handleEventMenu(e);
         else handleEventInGame(e);
     }
 }
 void GAME::update()
 {
-    if(paused) return;
     moveBullets();
     P.move();
     P.syncData();
@@ -181,8 +179,7 @@ void GAME::update()
 }
 void GAME::run()
 {
-    //introMenu();
-    endGame();
+    startGame();
     render();
     while(!quit)
     {
@@ -195,16 +192,26 @@ void GAME::run()
             if(choice==1) startGame();
             if(choice==2) quit = true;
             render();
-            //cout<<"inside:\n";debug();
         }
         if(quit) break ;
         while(!quit && inGame)
         {
             while(SDL_PollEvent(&e))
                 handleEvent(e);
-            update();
+            if(paused)
+            {
+                fixMenuChoice(1,4);
+                if(choice==1) resumeGame();
+                if(choice==2) ;
+                if(choice==3) ;
+                if(choice==4) quit = 1;
+            }
+            else
+                update();
             render();
             if(P.hp == 0 || B.hp == 0) endGame();
+            // if(paused) cout<<"./././././././././././././\n";
+            // debug();
         }
         if(quit) break ;
         while(!quit && isGameOver)
@@ -261,5 +268,6 @@ void GAME::debug()
     cout<<"inGame: "<<inGame<<endl;
     cout<<"isGameOver: "<<isGameOver<<endl;
     cout<<"quit: "<<quit<<endl;
+    cout<<"pause: "<<paused<<endl;
     cout<<SDL_GetError()<<'\n';
 }

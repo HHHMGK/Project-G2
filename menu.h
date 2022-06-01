@@ -17,9 +17,9 @@ void initMenuChoice()
     cContent[0].push_back("Quit");
     //pause menu
     cBox[1].push_back({550,240,180,50});
-    cBox[1].push_back({550,240+50+85,180,50});
-    cBox[1].push_back({550,240+2*50+2*85,180,50});
-    cBox[1].push_back({550,240+3*50+3*85,180,50});
+    cBox[1].push_back({550,240+50+65,180,50});
+    cBox[1].push_back({550,240+2*50+2*65,180,50});
+    cBox[1].push_back({550,240+3*50+3*65,180,50});
     cContent[1].push_back("Resume");
     cContent[1].push_back("Music");
     cContent[1].push_back("Sound");
@@ -42,8 +42,8 @@ void drawMenu(SDL_Renderer* renderer, vector<SDL_Rect> choiceBoxes, vector<strin
         if(i==choice-1)
         {
             drawTextCenter(renderer,choiceBoxes[i].x,choiceBoxes[i].y,40,choiceContent[i],choiceBoxes[i].w,choiceBoxes[i].h,{255,0,0,255},fontContent);
-            SDL_SetRenderDrawColor(renderer,255,0,0,180);
-            SDL_RenderDrawRect(renderer,&choiceBoxes[i]);
+            // SDL_SetRenderDrawColor(renderer,255,0,0,180);
+            // SDL_RenderDrawRect(renderer,&choiceBoxes[i]);
         }
         else
             drawTextCenter(renderer,choiceBoxes[i].x,choiceBoxes[i].y,40,choiceContent[i],choiceBoxes[i].w,choiceBoxes[i].h,{255,255,255,255},fontContent);
@@ -59,18 +59,24 @@ void drawMenuStart(SDL_Renderer* renderer,int menuChoice)
 }
 void drawMenuPause(SDL_Renderer* renderer,int menuChoice)
 {
+    SDL_Texture* faded;
+    faded = SDL_CreateTexture(renderer,SDL_PIXELFORMAT_RGBA8888,SDL_TEXTUREACCESS_TARGET,SCREEN_WIDTH,SCREEN_HEIGHT);
+    SDL_SetTextureBlendMode(faded,SDL_BLENDMODE_BLEND);
+    SDL_SetTextureAlphaMod(faded,200);
+    SDL_SetRenderTarget(renderer,faded);
     SDL_SetRenderDrawColor(renderer,0,0,0,255);
     SDL_RenderClear(renderer);
     drawText(renderer,515,95,67,"Paused");
     drawMenu(renderer,cBox[1],cContent[1],menuChoice);
+    SDL_SetRenderTarget(renderer,NULL);
+    SDL_RenderCopy(renderer,faded,NULL,NULL);
+    SDL_DestroyTexture(faded);
 }
 void drawMenuOver(SDL_Renderer* renderer,bool win,int menuChoice)
 {
     SDL_SetRenderDrawColor(renderer,0,0,0,255);
     SDL_RenderClear(renderer);
-    string str;
-    if(win) str="You Won";
-    else str="You Died";
-    drawText(renderer,490,150,67,str);
+    if(win) drawText(renderer,490,150,67,"You Win",{82, 113, 255, 255});
+    else drawText(renderer,490,150,67,"You Died",{255, 0, 0, 255});
     drawMenu(renderer,cBox[2],cContent[2],menuChoice);
 }
