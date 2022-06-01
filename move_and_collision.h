@@ -1,7 +1,6 @@
 #pragma once
 #include "constants.h"
 #include "terrain.h"
-#include "player_bullet.h"
 
 bool checkCollideTerrainX(int x,int y,int objectSize,int& txc)
 {
@@ -77,19 +76,11 @@ struct entity
     bool wasHit = 0;
     SDL_Rect hitbox;
 }eList[2];
-/*bool checkCollideRect(SDL_Rect a,SDL_Rect b)
+bool checkBulletHitEntity(int x,int y,int excluse,int size)
 {
-    std::cout<<a.x<<' '<<a.y<<' '<<a.w<<' '<<a.h<<'\n';
-    std::cout<<b.x<<' '<<b.y<<' '<<b.w<<' '<<b.h<<'\n';
-    if(a.x + a.w < b.x || a.x > b.x + b.w) return 0;
-    if(a.y + a.h < b.y || a.y > b.y + b.h) return 0;
-    return 1;
-}*/
-bool checkBulletHitEntity(int x,int y,int exclusion)
-{
-    SDL_Rect bRect={x,y,bSize,bSize};
+    SDL_Rect bRect={x,y,size,size};
     for(int i=0;i<2;i++)
-        if(i != exclusion && SDL_HasIntersection(&bRect,&eList[i].hitbox))
+        if(i != excluse && SDL_HasIntersection(&bRect,&eList[i].hitbox))
         {
             eList[i].wasHit = 1;
             return 1;

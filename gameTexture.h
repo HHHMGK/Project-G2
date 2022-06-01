@@ -2,14 +2,14 @@
 #include "texture.h"
 #include "constants.h"
 
-LTexture pTexture,bossTexture,tile;
+LTexture bossTexture,bossBulletTexture,tile;
 LTexture pHealth;
 
 void loadAllTexture(SDL_Renderer* renderer)
 {
-    //player, boss
-    //pTexture.loadFromFile(renderer,"./assets/player.png");
+    //boss
     bossTexture.loadFromFile(renderer,"./assets/CosmicNose.png");
+    bossBulletTexture.loadFromFile(renderer,"./assets/bossBullet.png");
     //terrain
     tile.loadFromFile(renderer,"./assets/tile.png");
     //hud

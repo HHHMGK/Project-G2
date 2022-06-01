@@ -22,5 +22,5 @@ const int bossSpawnX = SCREEN_WIDTH/2;
 const int bossSpawnY = 40;
 //bullet
 const int bSize=3;
-const int maxBulletNumber = 300;
+const int maxBulletNumber = 700;
 const int bVel=11;

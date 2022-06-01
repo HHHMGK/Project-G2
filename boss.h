@@ -2,6 +2,7 @@
 #include "constants.h"
 #include "gameTexture.h"
 #include "move_and_collision.h"
+#include "bullet.h"
 using namespace std;
 
 
@@ -9,10 +10,10 @@ struct boss
 {
     int x,y;
     int hp;
-    int attackType;//0: none, 1: bullet, 2: laser
     int phase;//0: norm, 1: 50% hp, 2: 25% hp
     int phaseUpdated = 0;
     int velX = 5,velY = 5;
+    int prevShootTime = 0;
     const int eid = 1;
     const int width = 302,height = 240;
 
@@ -28,20 +29,43 @@ boss::boss(int x = 640,int y = 200,int hp = bossMaxHP)
     this->x=x;
     this->y=y;
     this->hp=hp;
+    velX = velY = 5;
+    phase = phaseUpdated = 0;
 }
 void boss::spawn(int x = bossSpawnX, int y = bossSpawnY, int hp = bossMaxHP)
 {
     this->x=x;
     this->y=y;
     this->hp=hp;
+    velX = velY = 5;
+    phase = phaseUpdated = 0;
 }
+pair<int,int> firePoint[5] = {{15,15}, {150,0}, {290,15}, {30,240}, {270,240}};
+void boss::shoot()
+{
+    //center of boss
+    int cx = x+width/2, cy = y+height/2;
 
+    for(int i=0;i<5;i++)
+    {
+        int px = x+firePoint[i].first, py = y+firePoint[i].second;
+        double vx,vy;
+        calculateBulletVelocity(cx,cy,px,py,vx,vy,7);
+        addBullet(px,py,vx,vy,0);
+    }
+}
 void boss::move()
 {
     phase = 0;
     if(hp < bossMaxHP/2) phase = 1;
     if(hp < bossMaxHP/4) phase = 2;
     
+    double timeDiff = 2.5 - phase;
+    if(SDL_GetTicks() - prevShootTime >= timeDiff*1000)
+    {
+        prevShootTime = SDL_GetTicks();
+        shoot();
+    }
     if(phase==1 && phaseUpdated==0) velX*=1.5, velY*=1.5, phaseUpdated = 1;
     if(phase==2 && phaseUpdated==1) velX*=1.7, velY*=1.7, phaseUpdated = 2;
     x+=velX;
@@ -50,6 +74,7 @@ void boss::move()
     if(y < 40 || y + height > SCREEN_HEIGHT-40) velY=-velY;
     x=min(SCREEN_WIDTH-40,max(40,x));
     y=min(SCREEN_HEIGHT-40,max(40,y));
+
     //std::cout<<x<<' '<<y<<' '<<velX<<' '<<velY<<'\n';
 }
 void boss::syncData()
