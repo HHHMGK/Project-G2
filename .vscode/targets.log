@@ -5,13 +5,12 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
+ 
 
-# Make data base, printed on Wed Jun 01 01:53:56 2022
+# Make data base, printed on Wed Jun 01 11:33:34 2022
 
 # Variables
 
-# environment
-FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
 # environment
 SYSTEMDRIVE = C:
 # environment
@@ -21,12 +20,11 @@ USERPROFILE = C:\Users\ngodu
 # environment
 LOCALAPPDATA = C:\Users\ngodu\AppData\Local
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-a05bed05-ccf3-4208-9035-676bd4f8bb8e-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-674b7192-fbf8-4e24-8976-0d6b4b12d9ac-sock
 # environment
 VSCODE_CWD = C:\Users\ngodu\AppData\Local\Programs\Microsoft VS Code
 # environment
-CHOCOLATEYINSTALL = C: 
-\ProgramData\chocolatey
+CHOCOLATEYINSTALL = C:\ProgramData\chocolatey
 # environment
 SYSTEMROOT = C:\WINDOWS
 # environment
@@ -38,9 +36,7 @@ MAKE_COMMAND := C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe
 # automatic
 @D = $(patsubst %/,%,$(patsubst %\,%,$(dir $@)))
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_4820_BNMLMKRSRILSAWAS
-# environment
-FPS_BROWSER_USER_PROFILE_STRING = Default
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_1656_IBRBAITCNRRVFWMM
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # default
@@ -91,20 +87,16 @@ COMMONPROGRAMW6432 = C:\Program Files\Common Files
 MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
-# makefile (from 'Makefile', line 13)
-SDLLIBS = -lmingw32 -lSDL2main -lSDL2 -mwindows  -Wl,--dynamicbase -Wl,--nxcompat -Wl,--high-entropy-va -lm -ldinput8 -ldxguid -ldxerr8 -luser32 -lgdi32 -lwinmm -limm32 -lole32 -loleaut32 -lshell32 -lsetupapi -lversion -luuid -lRpcrt4 
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 4820
+VSCODE_PID = 1656
 # environment
 CUDA_PATH = C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4
 # automatic
 ?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
 # automatic
 *F = $(notdir $*)
-# makefile (from 'Makefile', line 9)
-LIBRARY_PATHS = -Lsrc/lib -Lsrc/bin
 # automatic
 <D = $(patsubst %/,%,$(patsubst %\,%,$(dir $<)))
 # environment
@@ -147,8 +139,6 @@ PROMPT = $P$G
 CHOCOLATEYLASTPATHUPDATE = 132917909699007620
 # environment
 NVTOOLSEXT_PATH = C:\Program Files\NVIDIA Corporation\NvToolsExt\
-# makefile (from 'Makefile', line 5)
-FILE_NAME = main
 # environment
 CUDA_PATH_V11_4 = C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4
 # environment
@@ -176,7 +166,8 @@ USERDOMAIN = HEHE
 # 'override' directive
 GNUMAKEFLAGS := 
 # environment
-OS = Windows_NT
+OS = W 
+indows_NT
 # makefile
 .DEFAULT_GOAL := all
 # environment
@@ -193,8 +184,6 @@ USERDOMAIN_ROAMINGPROFILE = HEHE
 NUMBER_OF_PROCESSORS = 12
 # environment
 PUBLIC = C:\Users\Public
-# makefile (from 'Makefile', line 11)
-COMPILER_FLAGS = -static -static-libgcc -static-libstdc++
 # environment
 APPDATA = C:\Users\ngodu\AppData\Roaming
 # environment
@@ -203,8 +192,6 @@ HOMEDRIVE = C:
 PROCESSOR_ARCHITECTURE = x86
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
-# makefile (from 'Makefile', line 4)
-FILE = main.cpp
 # environment
 COMMONPROGRAMFILES(X86) = C:\Program Files (x86)\Common Files
 # environment
@@ -227,14 +214,10 @@ SESSIONNAME = Console
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync load
 # environment
 PROCESSOR_REVISION = 6001
-# makefile (from 'Makefile', line 15)
-LINKER_FLAGS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf
-# makefile (from 'Makefile', line 7)
-INCLUDE_PATHS = -Isrc/include
 # environment
 PROCESSOR_IDENTIFIER = AMD64 Family 23 Model 96 Stepping 1, AuthenticAMD
 # variable set hash-table stats:
-# Load=111/1024=11%, Rehash=0, Collisions=13/149=9%
+# Load=102/1024=10%, Rehash=0, Collisions=10/132=8%
 
 # Pattern-specific Variable Values
 
@@ -242,9 +225,9 @@ PROCESSOR_IDENTIFIER = AMD64 Family 23 Model 96 Stepping 1, AuthenticAMD
 
 # Directories
 
-# . (key d:/code linh tinh/Learn SDL/Project G2, mtime 1654023224): 25 files, no impossibilities.
+# . (key d:/code linh tinh/Learn SDL/Project G2, mtime 1654056591): 33 files, no impossibilities.
 
-# 25 files, no impossibilities in 1 directories.
+# 33 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -255,7 +238,7 @@ PROCESSOR_IDENTIFIER = AMD64 Family 23 Model 96 Stepping 1, AuthenticAMD
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-01 01:53:28
+#  Last modified 2022-06-01 11:10:48
 #  File has been updated.
 #  Successfully updated.
 
@@ -265,7 +248,7 @@ Makefile:
 #  Modification time never checked.
 #  File has not been updated.
 
-all: main.cpp
+all:
 #  Command line target.
 #  Implicit rule search has not been done.
 #  Implicit/static pattern stem: ''
@@ -277,28 +260,21 @@ all: main.cpp
 # automatic
 # * := 
 # automatic
-# < := main.cpp
+# < := 
 # automatic
-# + := main.cpp
+# + := 
 # automatic
 # % := 
 # automatic
-# ^ := main.cpp
+# ^ := 
 # automatic
-# ? := main.cpp
+# ? := 
 # automatic
 # | := 
 # variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=7/18=39%
-#  recipe to execute (from 'Makefile', line 18):
-	g++ $(FILE) $(INCLUDE_PATHS) $(LIBRARY_PATHS) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(SDLLIBS)  -o $(FILE_NAME)
-
-# Not a target:
-main.cpp:
-#  Implicit rule search has been done.
-#  Last modified 2022-05-31 14:45:08
-#  File has been updated.
-#  Successfully updated.
+# Load=8/32=25%, Rehash=0, Collisions=1/11=9%
+#  recipe to execute (from 'Makefile', line 2):
+	g++ main.cpp -Isrc/include -Lsrc/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -o main
 
 # Not a target:
 .SUFFIXES:
@@ -307,19 +283,19 @@ main.cpp:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=5/1024=0%, Rehash=0, Collisions=0/18=0%
+# Load=4/1024=0%, Rehash=0, Collisions=0/16=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 28 / storage = 252 B / avg = 9 B
-# current buf: size = 8174 B / used = 252 B / count = 28 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 36 / storage = 357 B / avg = 9 B
+# current buf: size = 8174 B / used = 357 B / count = 36 / avg = 9 B
 
-# strcache performance: lookups = 36 / hit rate = 22%
+# strcache performance: lookups = 43 / hit rate = 16%
 # hash-table stats:
-# Load=28/8192=0%, Rehash=0, Collisions=0/36=0%
-# Finished Make data base on Wed Jun 01 01:53:56 2022
+# Load=36/8192=0%, Rehash=0, Collisions=0/43=0%
+# Finished Make data base on Wed Jun 01 11:33:34 2022
 
  

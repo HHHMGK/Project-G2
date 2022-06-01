@@ -5,6 +5,7 @@
 int main(int argc, char* args[])
 {
     //FreeConsole();
+    cout<<"Game start\n";
     GAME game;
     game.run();
     return 0;

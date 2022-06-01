@@ -6,22 +6,16 @@
 #include <SDL2/SDL_ttf.h>
 using namespace std;
 
-string defaultFont = "assets/ARIALBD.TTF";
-class textTexture
+string defaultFont = "assets/OpenSans-ExtraBold.TTF";
+struct textTexture
 {
-public:
     textTexture(int x,int y,int size,string str,string fontPath,SDL_Color color);
     void render(SDL_Renderer *renderer);
-    void setText(string str);
-    void setTextFromNumber(int x);
-    void setColor(SDL_Color color);
-    void setSize(int size);
-    void setFont(string path);
-    void setPos(int x,int y);
-private:
+    void initWH();
     int x,y;
     int size;
-    ::string str;
+    int w,h;
+    string str;
     SDL_Color color;
     TTF_Font* font;
     string fontPath;
@@ -38,8 +32,12 @@ textTexture::textTexture(int x,int y,int size,string str,string fontPath = defau
     this->color=color;
     this->font=TTF_OpenFont(fontPath.c_str(),size);
     this->texture=NULL;
+    initWH();
 }
-
+void textTexture::initWH()
+{
+    TTF_SizeText(font,str.c_str(),&w,&h);
+}
 void textTexture::render(SDL_Renderer *renderer)
 {
     if(font==NULL) 
@@ -55,39 +53,15 @@ void textTexture::render(SDL_Renderer *renderer)
     SDL_FreeSurface(surface);
 }
 
-void textTexture::setText(string str)
+void drawText(SDL_Renderer *renderer, int x, int y, int size, string s, SDL_Color color = {255,255,255,255}, string font = defaultFont)// boxSize for allign
 {
-    this->str=str;
+    textTexture t(x,y,size,s,font,color);
+    t.render(renderer);
 }
-void textTexture::setTextFromNumber(int x)
+void drawTextCenter(SDL_Renderer *renderer, int x, int y, int size, string s, int boxWidth, int boxHeight, SDL_Color color = {255,255,255,255}, string font = defaultFont)// boxSize for allign
 {
-    this->str=to_string(x);
-}
-void textTexture::setColor(SDL_Color color)
-{
-    this->color=color;
-}
-
-void textTexture::setSize(int size)
-{
-    this->size=size;
-    this->font=TTF_OpenFont(fontPath.c_str(),size);
-}
-
-void textTexture::setFont(string path)
-{
-    this->fontPath=path;
-    this->font=TTF_OpenFont(path.c_str(),size);
-}
-
-void textTexture::setPos(int x,int y)
-{
-    this->x=x;
-    this->y=y;
-}
-
-void drawText(SDL_Renderer *renderer, int x, int y, int size, string s)
-{
-    textTexture t(x,y,size,s,defaultFont);
+    textTexture t(x,y,size,s,font,color);
+    t.x+=(boxWidth-t.w)/2;
+    t.y+=(boxHeight-t.h)/2;
     t.render(renderer);
 }

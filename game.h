@@ -20,6 +20,7 @@ class GAME
 public:
     GAME();
     ~GAME();
+    void introMenu();
     void startGame();
     void pauseGame();
     void resumeGame();
@@ -33,6 +34,8 @@ public:
     void render();
 
     void run();
+
+    void debug();
 private:
     //game states
     bool quit;
@@ -43,6 +46,7 @@ private:
 
     //for menu
     int menuChoice;
+    int choice;
 
     SDL_Window *window;
     SDL_Renderer *renderer;
@@ -60,16 +64,26 @@ GAME::GAME()
     loadAllTexture(renderer);
     loadMap();
     initMenuChoice();
-    
+
     quit = false;
-    isStartMenu = true;
+    isStartMenu = false;
     inGame = false;
     paused = false;
     isGameOver = false;
+    menuChoice = 1;
+    choice = 0;
 }
 GAME::~GAME()
 {
     quitSDL(window, renderer);
+}
+void GAME::introMenu()
+{
+    isStartMenu = true;
+    inGame = false;
+    isGameOver = false;
+    menuChoice = 1;
+    choice = 0;
 }
 void GAME::startGame()
 {
@@ -77,10 +91,14 @@ void GAME::startGame()
     inGame = true;
     isGameOver = false;
     P.init(playerSpawnX,playerSpawnY);
+    menuChoice = 1;
+    choice = 0;
 }
 void GAME::pauseGame()
 {
     paused = true;
+    menuChoice = 1;
+    choice = 0;
 }
 void GAME::resumeGame()
 {
@@ -91,6 +109,8 @@ void GAME::endGame()
     isStartMenu = false;
     inGame = false;
     isGameOver = true;
+    menuChoice = 1;
+    choice = 0;
 }
 void GAME::fixMenuChoice(int l,int r)
 {
@@ -113,6 +133,9 @@ void GAME::handleEventMenu(SDL_Event &e)
                 break;
             case SDLK_ESCAPE:
                 menuChoice = 7;
+                break;
+            case SDLK_RETURN:
+                choice = menuChoice;
                 break;
         }
     }
@@ -139,28 +162,65 @@ void GAME::handleEvent(SDL_Event &e)
         quit = true;
         return ;
     }
-    if(isStartMenu)
+    if(isStartMenu || isGameOver)
         handleEventMenu(e);
     if(inGame)
     {
         if(paused) handleEventMenu(e);
         else handleEventInGame(e);
     }
-    if(isGameOver)
-        handleEventMenu(e);
 }
 void GAME::update()
 {
-    if (!paused)
-    {
-        moveBullets();
-        P.move();
-        P.syncData();
-        B.move();
-        B.syncData();
-    }
-    if(P.hp == 0 || B.hp == 0) isGameOver=1;
+    if(paused) return;
+    moveBullets();
+    P.move();
+    P.syncData();
+    B.move();
+    B.syncData();
 }
+void GAME::run()
+{
+    //introMenu();
+    endGame();
+    render();
+    while(!quit)
+    {
+        //debug();
+        while(!quit && isStartMenu)
+        {
+            while(SDL_PollEvent(&e))
+                handleEvent(e);
+            fixMenuChoice(1,2);
+            if(choice==1) startGame();
+            if(choice==2) quit = true;
+            render();
+            //cout<<"inside:\n";debug();
+        }
+        if(quit) break ;
+        while(!quit && inGame)
+        {
+            while(SDL_PollEvent(&e))
+                handleEvent(e);
+            update();
+            render();
+            if(P.hp == 0 || B.hp == 0) endGame();
+        }
+        if(quit) break ;
+        while(!quit && isGameOver)
+        {
+            while(SDL_PollEvent(&e))
+                handleEvent(e);
+            fixMenuChoice(1,3);
+            if(choice==1) startGame();  //play a gain
+            if(choice==2) introMenu(); //go back to menu  
+            if(choice==3) quit = true;  //quit
+            render();
+        }
+    }
+
+}
+
 void GAME::render()
 {
     int startTime = SDL_GetTicks(); 
@@ -182,8 +242,8 @@ void GAME::render()
     }
     if(isGameOver)
     {
-        if(P.hp==0) drawMenuOver(renderer,0);
-        else drawMenuOver(renderer,1);
+        if(P.hp==0) drawMenuOver(renderer,0,menuChoice);
+        else drawMenuOver(renderer,1,menuChoice);
     }
     SDL_RenderPresent(renderer);
 
@@ -194,40 +254,12 @@ void GAME::render()
         SDL_Delay(1000/FPS - frameTime);
 }
 
-void GAME::run()
+void GAME::debug()
 {
-    render();
-    //in menu
-    while(!quit)
-    {
-        while(!quit && isStartMenu)
-        {
-            handleEvent(e);
-            if(menuChoice==1) startGame();
-            if(menuChoice==2) quit = true;
-            fixMenuChoice(1,2);
-            render();
-        }
-        if(quit) return ;
-        startGame();
-        while(!quit && inGame)
-        {
-            while(SDL_PollEvent(&e))
-                handleEvent(e);
-            update();
-            render();
-        }
-        if(quit) return ;
-        endGame();
-        while(!quit && isGameOver)
-        {
-            handleEvent(e);
-            if(menuChoice==1) startGame();  //play a gain
-            if(menuChoice==2) isStartMenu = true, isGameOver=0; //go back to menu  
-            if(menuChoice==3) quit = true;  //quit
-            fixMenuChoice(1,3);
-            render();
-        }
-    }
-
+    //print states
+    cout<<"isStartMenu: "<<isStartMenu<<endl;
+    cout<<"inGame: "<<inGame<<endl;
+    cout<<"isGameOver: "<<isGameOver<<endl;
+    cout<<"quit: "<<quit<<endl;
+    cout<<SDL_GetError()<<'\n';
 }
