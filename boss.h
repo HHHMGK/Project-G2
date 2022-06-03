@@ -40,17 +40,18 @@ void boss::spawn(int x = bossSpawnX, int y = bossSpawnY, int hp = bossMaxHP)
     velX = velY = 5;
     phase = phaseUpdated = 0;
 }
-pair<int,int> firePoint[5] = {{15,15}, {150,0}, {290,15}, {30,240}, {270,240}};
+pair<int,int> firePoint[12] = {{15,15}, {150,0}, {290,15}, {30,240}, {270,240},
+                              {150,240}, {95,225}, {205,225}, {115,230}, {185,230}, {290,160}, {15,160}};
 void boss::shoot()
 {
     //center of boss
     int cx = x+width/2, cy = y+height/2;
 
-    for(int i=0;i<5;i++)
+    for(int i=0;i<12;i++)
     {
         int px = x+firePoint[i].first, py = y+firePoint[i].second;
         double vx,vy;
-        calculateBulletVelocity(cx,cy,px,py,vx,vy,7);
+        calculateBulletVelocity(cx,cy,px,py,vx,vy,5);
         addBullet(px,py,vx,vy,0);
     }
 }
@@ -61,7 +62,7 @@ void boss::move()
     if(hp < bossMaxHP/4) phase = 2;
     
     double timeDiff = 2.5 - phase;
-    if(SDL_GetTicks() - prevShootTime >= timeDiff*1000)
+    if(SDL_GetTicks() - prevShootTime >= timeDiff*1000 && y <= SCREEN_HEIGHT/3)
     {
         prevShootTime = SDL_GetTicks();
         shoot();
@@ -81,7 +82,7 @@ void boss::syncData()
 {
     if(eList[eid].wasHit)
     {
-        hp-=10;
+        hp-=2;
         eList[eid].wasHit=0;
     }
     eList[eid].hitbox.x=x;

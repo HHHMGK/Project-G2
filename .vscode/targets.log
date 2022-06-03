@@ -5,8 +5,9 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
+ 
 
-# Make data base, printed on Thu Jun 02 01:42:18 2022
+# Make data base, printed on Fri Jun 03 22:15:07 2022
 
 # Variables
 
@@ -21,12 +22,11 @@ USERPROFILE = C:\Users\ngodu
 # environment
 LOCALAPPDATA = C:\Users\ngodu\AppData\Local
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-5abc5a9e-6ec3-498a-950d-ab13dfe3e999-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-ad11f57f-3ef6-4512-b615-3f4901992afb-sock
 # environment
 VSCODE_CWD = C:\Users\ngodu\AppData\Local\Programs\Microsoft VS Code
 # environment
-CHOCOLATEYINSTALL = C: 
-\ProgramData\chocolatey
+CHOCOLATEYINSTALL = C:\ProgramData\chocolatey
 # environment
 SYSTEMROOT = C:\WINDOWS
 # environment
@@ -38,7 +38,7 @@ MAKE_COMMAND := C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe
 # automatic
 @D = $(patsubst %/,%,$(patsubst %\,%,$(dir $@)))
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_348_GRHKNNWZBXTKUMPI
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_20116_ZMKOJNCLQNYZATFK
 # environment
 FPS_BROWSER_USER_PROFILE_STRING = Default
 # environment
@@ -94,7 +94,7 @@ MAKEFILE_LIST := Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 348
+VSCODE_PID = 20116
 # environment
 CUDA_PATH = C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4
 # automatic
@@ -107,8 +107,6 @@ CUDA_PATH = C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
 JD2_HOME = C:\Users\ngodu\AppData\Local\JDownloader 2.0
-# environment
-ONEDRIVECONSUMER = C:\Users\ngodu\OneDrive
 # default
 MAKE_HOST := Windows32
 # environment
@@ -209,7 +207,8 @@ VSCODE_IPC_HOOK = \\.\pipe\39c6da8f575dfd4fd5b4c56378bf5bc8-1.67.2-main-sock
 <F = $(notdir $<)
 # default
 SUFFIXES := 
-# environment
+# e 
+nvironment
 ALLUSERSPROFILE = C:\ProgramData
 # environment
 SESSIONNAME = Console
@@ -220,7 +219,7 @@ PROCESSOR_REVISION = 6001
 # environment
 PROCESSOR_IDENTIFIER = AMD64 Family 23 Model 96 Stepping 1, AuthenticAMD
 # variable set hash-table stats:
-# Load=104/1024=10%, Rehash=0, Collisions=11/134=8%
+# Load=103/1024=10%, Rehash=0, Collisions=10/133=8%
 
 # Pattern-specific Variable Values
 
@@ -228,7 +227,7 @@ PROCESSOR_IDENTIFIER = AMD64 Family 23 Model 96 Stepping 1, AuthenticAMD
 
 # Directories
 
-# . (key d:/code linh tinh/Learn SDL/Project G2, mtime 1654108902): 43 files, no impossibilities.
+# . (key d:/code linh tinh/Learn SDL/Project G2, mtime 1654134072): 43 files, no impossibilities.
 
 # 43 files, no impossibilities in 1 directories.
 
@@ -299,6 +298,6 @@ all:
 # strcache performance: lookups = 53 / hit rate = 13%
 # hash-table stats:
 # Load=46/8192=1%, Rehash=0, Collisions=0/53=0%
-# Finished Make data base on Thu Jun 02 01:42:18 2022
+# Finished Make data base on Fri Jun 03 22:15:07 2022
 
  

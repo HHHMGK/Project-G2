@@ -26,7 +26,7 @@ struct player
     bool struck();
 };
 
-player::player(int x = 0, int y = 0, int hp=5)
+player::player(int x = 0, int y = 0, int hp=maxHP)
 {
     this->x=x;
     this->y=y;
@@ -36,7 +36,7 @@ player::player(int x = 0, int y = 0, int hp=5)
     invisible = 0;
     hitTime = 0;
 }
-void player::spawn(int x = playerSpawnX, int y = playerSpawnY, int hp=5)
+void player::spawn(int x = playerSpawnX, int y = playerSpawnY, int hp=maxHP)
 {
     this->x=x;
     this->y=y;
@@ -60,14 +60,14 @@ void player::handleEvent(SDL_Event &e)
             case SDLK_a: 
                 velX-=pVel;
                 break;
-            case SDLK_UP:
-            case SDLK_w: 
-                velY-=pVel;
-                break;
-            case SDLK_DOWN:
-            case SDLK_s: 
-                velY+=pVel;
-                break;
+            // case SDLK_UP:
+            // case SDLK_w: 
+            //     velY-=pVel;
+            //     break;
+            // case SDLK_DOWN:
+            // case SDLK_s: 
+            //     velY+=pVel;
+            //     break;
             case SDLK_o: 
                 x=playerSpawnX;
                 y=playerSpawnY;

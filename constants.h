@@ -11,10 +11,11 @@ const int nRow = SCREEN_HEIGHT/tSize;
 const int nCol = SCREEN_WIDTH/tSize;
 
 //player
-const int pVel=10;
-const int pSize=10;
+const int pVel=9;
+const int pSize=15;
+const int maxHP=3;
 const int playerSpawnX = SCREEN_WIDTH/2;
-const int playerSpawnY = SCREEN_HEIGHT/2;
+const int playerSpawnY = SCREEN_HEIGHT-40-pSize;
 
 //boss
 const int bossMaxHP = 1000;
