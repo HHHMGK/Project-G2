@@ -160,6 +160,14 @@ void GAME::handleEvent(SDL_Event &e)
         quit = true;
         return ;
     }
+    if (e.type == SDL_KEYDOWN && e.key.repeat == 0)
+    {
+        if(e.key.keysym.sym == SDLK_KP_PLUS)
+            volume += 10;
+        else if(e.key.keysym.sym == SDLK_KP_MINUS)
+            volume-=10;
+        changeVolume();
+    }
     if(isStartMenu || isGameOver)
         handleEventMenu(e);
     if(inGame)

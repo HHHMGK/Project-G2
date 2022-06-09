@@ -26,7 +26,16 @@ void restartBGMusic() {
     if(Mix_PlayingMusic() == 1)
         Mix_HaltMusic();
     Mix_PlayMusic(bgMusic, -1);
+    Mix_VolumeMusic(volume);
 }
 void playSFX(Mix_Chunk *sfx) {
+    Mix_VolumeChunk(menuSFX,volume);
     Mix_PlayChannel(-1, sfx, 0);
+}
+
+void changeVolume() {
+    volume=min(max(0,volume),128);
+    cout<<volume<<endl;
+    Mix_VolumeMusic(volume);
+    Mix_VolumeChunk(menuSFX,volume);
 }

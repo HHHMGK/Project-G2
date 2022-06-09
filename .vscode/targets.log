@@ -7,7 +7,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # There is NO WARRANTY, to the extent permitted by law.
  
 
-# Make data base, printed on Fri Jun 03 22:15:07 2022
+# Make data base, printed on Thu Jun 09 08:30:13 2022
 
 # Variables
 
@@ -22,7 +22,7 @@ USERPROFILE = C:\Users\ngodu
 # environment
 LOCALAPPDATA = C:\Users\ngodu\AppData\Local
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-ad11f57f-3ef6-4512-b615-3f4901992afb-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-1b08a7f8-1afd-46a4-95b1-7aa0b3e28267-sock
 # environment
 VSCODE_CWD = C:\Users\ngodu\AppData\Local\Programs\Microsoft VS Code
 # environment
@@ -38,7 +38,7 @@ MAKE_COMMAND := C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe
 # automatic
 @D = $(patsubst %/,%,$(patsubst %\,%,$(dir $@)))
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_20116_ZMKOJNCLQNYZATFK
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_21336_OFULOHQHDGSKCTWZ
 # environment
 FPS_BROWSER_USER_PROFILE_STRING = Default
 # environment
@@ -94,7 +94,7 @@ MAKEFILE_LIST := Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 20116
+VSCODE_PID = 21336
 # environment
 CUDA_PATH = C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.4
 # automatic
@@ -207,8 +207,7 @@ VSCODE_IPC_HOOK = \\.\pipe\39c6da8f575dfd4fd5b4c56378bf5bc8-1.67.2-main-sock
 <F = $(notdir $<)
 # default
 SUFFIXES := 
-# e 
-nvironment
+# environment
 ALLUSERSPROFILE = C:\ProgramData
 # environment
 SESSIONNAME = Console
@@ -298,6 +297,6 @@ all:
 # strcache performance: lookups = 53 / hit rate = 13%
 # hash-table stats:
 # Load=46/8192=1%, Rehash=0, Collisions=0/53=0%
-# Finished Make data base on Fri Jun 03 22:15:07 2022
+# Finished Make data base on Thu Jun 09 08:30:13 2022
 
  

@@ -5,6 +5,7 @@ const int SCREEN_HEIGHT = 720;
 const int FPS = 60;
 const double PI = 3.14159265358979323846;
 
+int volume = 48;
 //tile
 const int tSize=40;
 const int nRow = SCREEN_HEIGHT/tSize;
